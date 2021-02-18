@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import NavigationBar from 'react-native-navbar'
+
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false)
@@ -8,67 +10,74 @@ export default function App() {
     console.log("hello")
     setModalVisible(!modalVisible)
   }
-  const print2 = (e) => {
-    alert("print2")
+  const titleConfig = {
+    title: 'Hey'
   }
   return (
-    <View style={styles.container}>
-      <View style={styles.navbar} onPress={print2}>
-        <Text>Navbar</Text>
-        <Button 
-          onPress={print}
-          title="Press Me"
-        />
-      </View>
+    <View>
+      <NavigationBar
+        title={titleConfig}
+        leftButton={titleConfig}
+        rightButton={titleConfig}
+      />
+    <View style={styles.centeredView}>
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("modal has been closed");
-          setModalVisible(!modalVisible)
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
         }}
-      >
-        <View style={styles.modal}>
-          <Text>Modal</Text>
-          <Pressable
+        >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
               <Text style={styles.textStyle}>Hide Modal</Text>
             </Pressable>
+          </View>
         </View>
       </Modal>
-      <ScrollView>
-        <Text>This is Maximos' first mobile app!</Text>
-      </ScrollView>
-      <StatusBar style="auto" />
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}
+        >
+        <Text style={styles.textStyle}>Show Modal</Text>
+      </Pressable>
+    </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  modal: {
+  centeredView: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 20,
-    width: 20,
-    backgroundColor: "#00EAFF"
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
   },
-  navbar: {
-    backgroundColor: "#000",
-    width: "100%",
-    height: "15%",
-    marginBottom: "10%"
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
   },
   button: {
     borderRadius: 20,
@@ -81,4 +90,13 @@ const styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: "#2196F3",
   },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
