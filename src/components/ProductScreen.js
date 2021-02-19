@@ -1,24 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
-import { NativeRouter, Switch, Route} from 'react-router-native'
+export default function ProductScreen ({history}) {
 
-import HomeScreen from './src/components/HomeScreen'
-import NavBar from './src/components/NavBar';
-import ProductScreen from './src/components/ProductScreen';
+    return (
+        <View style={styles.centeredView}>
+            <Text>Product</Text>
+            <Text>Product</Text>
+            <Text>Product</Text>
+            <Text>Product</Text>
+            <Text>Product</Text>
+        </View>
+    );
 
-export default function App() {
-
-  return (
-    <NativeRouter>
-        <Route path="/" component={NavBar} />
-        <Switch>
-          <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/products" component={ProductScreen} />
-        </Switch>
-    </NativeRouter>
-  );
-};
+    
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -76,5 +71,4 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }
-});
+  }})

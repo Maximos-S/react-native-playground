@@ -1,24 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
-import { NativeRouter, Switch, Route} from 'react-router-native'
+import { Alert, SafeView, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import NavigationBar from 'react-native-navbar'
 
-import HomeScreen from './src/components/HomeScreen'
-import NavBar from './src/components/NavBar';
-import ProductScreen from './src/components/ProductScreen';
 
-export default function App() {
+export default function NavBar ({history}) {
+    const print = (e) => {
+        console.log("hello")
+        setModalVisible(!modalVisible)
+    }
+    const titleConfig = {
+        title: "Home",
+    }
+    const profileConfig = {
+        title: "Profile",
+        handler: () => {
+            console.log("history", history)
+            history.push("/products")
+        }
+    }
+    const productsConfig = {
+        title: "Products",
+        handler: () => {
+            console.log("history", history)
+            history.push("/")
+        }
+    }
+    return (
+        <View style={styles.navbarContainer}>
+            <NavigationBar
+                style={styles.navigation}
+                title={titleConfig}
+                leftButton={profileConfig}
+                rightButton={productsConfig}
+            />
+        </View>
+    );
 
-  return (
-    <NativeRouter>
-        <Route path="/" component={NavBar} />
-        <Switch>
-          <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/products" component={ProductScreen} />
-        </Switch>
-    </NativeRouter>
-  );
-};
+    
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -76,5 +95,4 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }
-});
+  }})

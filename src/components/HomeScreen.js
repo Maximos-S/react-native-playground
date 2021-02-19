@@ -1,24 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
-import { NativeRouter, Switch, Route} from 'react-router-native'
+export default function HomeScreen ({history}) {
+      const [modalVisible, setModalVisible] = useState(false)
 
-import HomeScreen from './src/components/HomeScreen'
-import NavBar from './src/components/NavBar';
-import ProductScreen from './src/components/ProductScreen';
+    return (
+        <View style={styles.centeredView}>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+        >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <View style={styles.centeredView}>
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModalVisible(true)}
+          >
+          <Text style={styles.textStyle}>Show Modal</Text>
+        </Pressable>
+      </View>
+      </View>
+    );
 
-export default function App() {
-
-  return (
-    <NativeRouter>
-        <Route path="/" component={NavBar} />
-        <Switch>
-          <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/products" component={ProductScreen} />
-        </Switch>
-    </NativeRouter>
-  );
-};
+    
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -76,5 +96,4 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }
-});
+  }})
