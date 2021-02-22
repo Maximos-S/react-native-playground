@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   SectionList: {
     width: "100%",
-    padding: 20,
+    padding: 0,
   },
   navbarContainer: {
     width: "100%",
@@ -67,11 +67,6 @@ const styles = StyleSheet.create({
   },
   navigation: {
     backgroundColor: "tomato"
-  },
-  item: {
-    backgroundColor: "gold",
-    padding: 20,
-    marginVertical: 8,
   },
   modalView: {
     margin: 20,
@@ -111,6 +106,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   title: {
+    padding: 20,
     fontSize: 24,
+    backgroundColor: "dodgerblue",
   }
 })

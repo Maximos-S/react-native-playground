@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
         backgroundColor: "goldenrod",
         padding: 20,
         marginVertical: 8,
+        marginHorizontal: 20,
     }
 })
