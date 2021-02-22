@@ -1,16 +1,46 @@
-import React, {useState} from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Alert, SectionList, ScrollView, SafeAreaView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import ProductDetail from './ProductDetail';
 export default function ProductScreen ({history}) {
-
+  console.log("product screen")
+  const DATA = [
+    {
+      title: "Main dishes",
+      data: ["Pizza", "Burger", "Risotto"]
+    },
+    {
+      title: "Sides",
+      data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+    },
+    {
+      title: "Drinks",
+      data: ["Water", "Coke", "Beer"]
+    },
+    {
+      title: "Desserts",
+      data: ["Cheese Cake", "Ice Cream"]
+    }
+  ];
+  
+  const Item = ({ product }) => (
+    <ProductDetail style={styles.item} product={product} style={styles.title} />
+  );
     return (
-        <View style={styles.centeredView}>
-            <Text>Product</Text>
-            <Text>Product</Text>
-            <Text>Product</Text>
-            <Text>Product</Text>
-            <Text>Product</Text>
-        </View>
+      <SafeAreaView style={styles.container}>
+        <SectionList
+          sections={DATA}
+          keyExtractor={(item, idx) => {
+          return item + idx}}
+          renderItem={({item}) => {
+            return <Item product={item} />}}
+          renderSectionHeader={({section: {title}}) => (
+            <Text style={styles.title}>{title}</Text>
+          )}
+        />
+      </SafeAreaView>
     );
+
+
 
     
 }
@@ -29,11 +59,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
     backgroundColor: 'dodgerblue',
   },
   navigation: {
     backgroundColor: "tomato"
+  },
+  item: {
+    backgroundColor: "gold",
+    padding: 20,
+    marginVertical: 8,
   },
   modalView: {
     margin: 20,
@@ -71,4 +105,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }})
+  },
+  title: {
+    fontSize: 24,
+  }
+})

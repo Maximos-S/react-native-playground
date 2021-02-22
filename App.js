@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable, SafeAreaView } from 'react-native';
 import { NativeRouter, Switch, Route} from 'react-router-native'
 
 import HomeScreen from './src/components/HomeScreen'
@@ -11,7 +11,9 @@ export default function App() {
 
   return (
     <NativeRouter>
+      <SafeAreaView >
         <Route path="/" component={NavBar} />
+      </SafeAreaView>
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/products" component={ProductScreen} />
@@ -34,7 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
     backgroundColor: 'dodgerblue',
   },
   navigation: {
