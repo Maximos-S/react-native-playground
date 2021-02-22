@@ -5,10 +5,11 @@ import { NativeRouter, Switch, Route} from 'react-router-native'
 
 import HomeScreen from './src/components/HomeScreen'
 import NavBar from './src/components/NavBar';
+import ProductDetailScreen from './src/components/ProductDetailScreen';
 import ProductScreen from './src/components/ProductScreen';
 
 export default function App() {
-
+  const regex = /.+/;
   return (
     <NativeRouter>
       <SafeAreaView >
@@ -17,6 +18,8 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/products" component={ProductScreen} />
+          <Route exact path="/products/:productName"component={ProductDetailScreen} />
+          {/* <Route exact path={/\/products\/.+/ } component={ProductDetailScreen} /> */}
         </Switch>
     </NativeRouter>
   );

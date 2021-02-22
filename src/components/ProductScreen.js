@@ -22,7 +22,7 @@ export default function ProductScreen ({history}) {
   ];
   
   const Item = ({ product }) => (
-    <ProductDetail style={styles.item} product={product} style={styles.title} />
+    <ProductDetail style={styles.item} product={product} style={styles.title} history={history}/>
   );
     return (
       <SafeAreaView style={styles.container}>

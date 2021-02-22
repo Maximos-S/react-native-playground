@@ -1,10 +1,14 @@
 import React from 'react'
-import { View, Text , StyleSheet} from 'react-native'
+import { View, Text , StyleSheet, Button} from 'react-native'
 
-export default function ProductDetail({product}) {
+export default function ProductDetail({product, history}) {
+    const productReroute = () => {
+        history.push(`/products/${product}`)
+    }
     return (
+
         <View style={styles.item}>
-            <Text>{product}</Text>
+            <Button title={product} onPress={productReroute}/>
             {/* { product && product.data.map((item, idx)=> <Text key={idx}>{item}</Text>)} */}
         </View>
     )
