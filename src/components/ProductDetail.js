@@ -1,12 +1,19 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text , StyleSheet} from 'react-native'
 
 export default function ProductDetail({product}) {
-    console.log("prodcut", product)
     return (
-        <View>
+        <View style={styles.item}>
             <Text>{product}</Text>
             {/* { product && product.data.map((item, idx)=> <Text key={idx}>{item}</Text>)} */}
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    item: {
+        backgroundColor: "goldenrod",
+        padding: 20,
+        marginVertical: 8,
+    }
+})

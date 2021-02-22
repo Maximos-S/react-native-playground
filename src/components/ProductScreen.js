@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Alert, SectionList, ScrollView, SafeAreaView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import ProductDetail from './ProductDetail';
 export default function ProductScreen ({history}) {
-  console.log("product screen")
   const DATA = [
     {
       title: "Main dishes",
@@ -28,6 +27,7 @@ export default function ProductScreen ({history}) {
     return (
       <SafeAreaView style={styles.container}>
         <SectionList
+          style={styles.SectionList}
           sections={DATA}
           keyExtractor={(item, idx) => {
           return item + idx}}
@@ -49,6 +49,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+  },
+  SectionList: {
+    width: "100%",
+    padding: 20,
   },
   navbarContainer: {
     width: "100%",
