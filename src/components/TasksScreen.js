@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Alert, SectionList, ScrollView, SafeAreaView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import ProductDetail from './ProductDetail';
-export default function ProductScreen ({history}) {
+export default function TasksScreen ({history}) {
   const DATA = [
     {
       title: "Main dishes",
@@ -20,6 +20,10 @@ export default function ProductScreen ({history}) {
       data: ["Cheese Cake", "Ice Cream"]
     }
   ];
+
+  const rerouteCreateForm = (e) => {
+    history.push("/create")
+  }
   
   const Item = ({ product }) => (
     <ProductDetail style={styles.item} product={product} style={styles.title} history={history}/>
@@ -37,6 +41,9 @@ export default function ProductScreen ({history}) {
             <Text style={styles.title}>{title}</Text>
           )}
         />
+        <View style={styles.formFooter}>
+          <Button style={styles.createTask} title="create task" onPress={rerouteCreateForm}/>
+        </View>
       </SafeAreaView>
     );
 
@@ -83,6 +90,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
+  createTask: {
+    color: "red",
+    fontSize: 30,
+  },
   button: {
     height: 'auto',
 
@@ -95,6 +106,17 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: "#2196F3",
+  },
+  formFooter: {
+    backgroundColor: "tomato",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 50,
+    zIndex: 5,
+    flex: 1,
+    justifyContent: "center",
   },
   textStyle: {
     color: "white",

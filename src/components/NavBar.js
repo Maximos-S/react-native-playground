@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
 import { Alert, SafeView, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import NavigationBar from 'react-native-navbar'
+import dateFormat from 'dateformat'
 
 
 export default function NavBar ({history}) {
+  let now = new Date();
     const print = (e) => {
         console.log("hello")
         setModalVisible(!modalVisible)
     }
     const titleConfig = {
-        title: "Home",
+        title: dateFormat(now, "dddd, mmmm dS"),
     }
     const profileConfig = {
-        title: "Profile",
+        title: "Tasks",
         handler: () => {
             console.log("history", history)
             history.push("/products")
         }
     }
     const productsConfig = {
-        title: "Products",
+        title: "Home",
         handler: () => {
-            console.log("history", history)
             history.push("/")
         }
     }
