@@ -1,24 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import { Alert, SectionList, ScrollView, SafeAreaView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import { useSelector } from 'react-redux'
+
+
 import ProductDetail from './ProductDetail';
 export default function TasksScreen ({history}) {
+  const DAILYDATA = useSelector(state => state.tasks.Daily)
+  const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
+  const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
+  
   const DATA = [
     {
-      title: "Main dishes",
-      data: ["Pizza", "Burger", "Risotto"]
+      title: "Daily",
+      data: DAILYDATA
     },
     {
-      title: "Sides",
-      data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+      title: "Weekly",
+      data: WEEKLYDATA
     },
     {
-      title: "Drinks",
-      data: ["Water", "Coke", "Beer"]
+      title: "Monthly",
+      data: MONTHLYDATA
     },
-    {
-      title: "Desserts",
-      data: ["Cheese Cake", "Ice Cream"]
-    }
   ];
 
   const rerouteCreateForm = (e) => {
@@ -29,7 +32,7 @@ export default function TasksScreen ({history}) {
     <ProductDetail style={styles.item} product={product} style={styles.title} history={history}/>
   );
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <SectionList
           style={styles.SectionList}
           sections={DATA}
@@ -44,7 +47,7 @@ export default function TasksScreen ({history}) {
         <View style={styles.formFooter}>
           <Button style={styles.createTask} title="create task" onPress={rerouteCreateForm}/>
         </View>
-      </SafeAreaView>
+      </View>
     );
 
 
