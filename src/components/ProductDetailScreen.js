@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button,Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useParams } from 'react-router-native'
 import {Icon} from 'react-native-elements'
 
