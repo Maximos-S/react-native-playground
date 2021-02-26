@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import { SafeAreaView, ScrollView, StyleSheet, Text, View ,TextInput, Button} from 'react-native'
+import { SafeAreaView, ImageBackground,ScrollView, StyleSheet, Text, View ,TextInput, Button} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
 import {useDispatch} from 'react-redux'
 import {CREATE_TASK} from '../store/index'
 
-export default function CreateTaskScreen({history}) {
+export default function CreateTaskScreen({navigation}) {
     const [taskName, setTaskName] = useState("")
     const [taskType, setTaskType] = useState("")
 
@@ -15,13 +15,16 @@ export default function CreateTaskScreen({history}) {
             type: CREATE_TASK,
             payload: {taskName, taskType}
         })
-        history.push("/products")
+        navigation.navigate("Tasks")
     }
 
 
     return (
+        <View style={styles.container}>
+            <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
          <ScrollView >
-             <View style={styles.container}>
+
+             <View style={styles.scrollContainer}>
                  <View style={styles.formContainer}>
                     <TextInput style={styles.input} placeholder="task name" onChangeText={(text) => {setTaskName(text)}}/>
                     <RNPickerSelect 
@@ -37,6 +40,7 @@ export default function CreateTaskScreen({history}) {
                  </View>
              </View>
         </ScrollView>
+        </View>
     )
 }
 
@@ -44,8 +48,13 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     alignItems: 'center',
-    padding: 50,
     justifyContent: 'center',
+  },
+    scrollContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 50,
   },
   input: {
     margin: 20,
@@ -54,6 +63,12 @@ const styles = StyleSheet.create({
   picker: {
     textAlign: "center",
     fontSize: 30,
+  },
+  image: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   formContainer: {
       width: "90%",

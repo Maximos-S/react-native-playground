@@ -3,11 +3,9 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useParams } from 'react-router-native'
 import {Icon} from 'react-native-elements'
 
-export default function ProductDetailScreen({productName, history}) {
-    const params = useParams()
+export default function ProductDetailScreen({product, setDetailRevealed}) {
     const rerouteBack = () => {
-        history.goBack();
-        console.log("history", history)
+        setDetailRevealed(false)
     }
     return (
         <View style={styles.container}>
@@ -15,7 +13,7 @@ export default function ProductDetailScreen({productName, history}) {
                 <Pressable onPress={rerouteBack}>
                     <Icon name="arrow-left" type="font-awesome" color="#00aced" />
                 </Pressable>
-                <Text style={styles.title}>{params.productName}</Text>
+                <Text style={styles.title}>{product}</Text>
                 <View>
                 </View>
             </View>
@@ -23,7 +21,7 @@ export default function ProductDetailScreen({productName, history}) {
                 <Image style={styles.image} source={require("../../assets/background-image.jpg")} />
             </View>
             <View style={styles.infoContainer}>
-                <Text style={styles.productTitle}>{params.productName}</Text>
+                <Text style={styles.productTitle}>{product}</Text>
             </View>
         </View>
     )
@@ -33,14 +31,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
+        width: "100%",
+        height: "100%",
         paddingTop: 80,
         backgroundColor: "dodgerblue",
         zIndex: 2,
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
+        // position: "absolute",
+        // top: 0,
+        // bottom: 0,
+        // left: 0,
+        // right: 0,
     },
     imageContainer: {
         justifyContent: "center",

@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { Alert, SectionList, ScrollView, SafeAreaView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import { Alert, ImageBackground, SectionList, ScrollView, SafeAreaView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import { useSelector } from 'react-redux'
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 import ProductDetail from './ProductDetail';
-export default function TasksScreen ({history}) {
+import ProductDetailScreen from './ProductDetailScreen';
+export default function TasksScreen ({navigation}) {
   const DAILYDATA = useSelector(state => state.tasks.Daily)
   const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
   const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
@@ -24,29 +26,24 @@ export default function TasksScreen ({history}) {
     },
   ];
 
-  const rerouteCreateForm = (e) => {
-    history.push("/create")
-  }
   
-  const Item = ({ product }) => (
-    <ProductDetail style={styles.item} product={product} style={styles.title} history={history}/>
+  const Item = ({ product, navigation }) => (
+    <ProductDetail style={styles.item} product={product} style={styles.title} navigation={navigation}/>
   );
     return (
       <View style={styles.container}>
+          <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
         <SectionList
           style={styles.SectionList}
           sections={DATA}
           keyExtractor={(item, idx) => {
           return item + idx}}
           renderItem={({item}) => {
-            return <Item product={item} />}}
+            return <Item product={item} navigation={navigation}/>}}
           renderSectionHeader={({section: {title}}) => (
             <Text style={styles.title}>{title}</Text>
           )}
         />
-        <View style={styles.formFooter}>
-          <Button style={styles.createTask} title="create task" onPress={rerouteCreateForm}/>
-        </View>
       </View>
     );
 
@@ -77,6 +74,12 @@ const styles = StyleSheet.create({
   },
   navigation: {
     backgroundColor: "tomato"
+  },
+  image: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   modalView: {
     margin: 20,
@@ -109,17 +112,6 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: "#2196F3",
-  },
-  formFooter: {
-    backgroundColor: "tomato",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 50,
-    zIndex: 5,
-    flex: 1,
-    justifyContent: "center",
   },
   textStyle: {
     color: "white",

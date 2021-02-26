@@ -5,7 +5,7 @@ export default function HomeScreen ({history}) {
 
     return (
         <View style={styles.centeredView}>
-          {/* <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} /> */}
+          <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
           <Modal
           animationType="slide"
           transparent={true}
