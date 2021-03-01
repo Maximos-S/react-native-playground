@@ -1,30 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable, SafeAreaView } from 'react-native';
+import { ImageBackground, Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable, SafeAreaView } from 'react-native';
 import { NativeRouter, Switch, Route} from 'react-router-native'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
+import {Provider, } from 'react-redux'
+import {createStore} from 'redux'
+import 'react-native-gesture-handler'
+import {NavigationContainer} from '@react-navigation/native'
+
+
 
 import HomeScreen from './src/components/HomeScreen'
 import NavBar from './src/components/NavBar';
 import ProductDetailScreen from './src/components/ProductDetailScreen';
-import ProductScreen from './src/components/ProductScreen';
+import TasksScreen from './src/components/TasksScreen';
+import CreateTaskScreen from './src/components/CreateTaskScreen';
+import {tasksReducer} from './src/store/index'
 
 export default function App() {
   const regex = /.+/;
+
+  const store = createStore(tasksReducer);
   return (
-    <SafeAreaProvider>
-      <NativeRouter>
-        <SafeAreaView >
-          <Route path="/" component={NavBar} />
-        </SafeAreaView>
-          <Switch>
-            <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/products" component={ProductScreen} />
-            <Route exact path="/products/:productName" component={ProductDetailScreen} />
-            {/* <Route exact path={/\/products\/.+/ } component={ProductDetailScreen} /> */}
-          </Switch>
-      </NativeRouter>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      {/* <SafeAreaProvider> */}
+
+      <NavigationContainer>
+        <NavBar />
+        {/* <NativeRouter> */}
+            {/* <Switch> */}
+              {/* <Route exact path="/" component={HomeScreen} /> */}
+              {/* <Route exact path="/products" component={TasksScreen} />
+              <Route exact path="/products/:productName" component={ProductDetailScreen} />
+              <Route exact path="/create" component={CreateTaskScreen} /> */}
+              {/* <Route exact path={/\/products\/.+/ } component={ProductDetailScreen} /> */}
+            {/* </Switch> */}
+          {/* <View >
+            <Route path="/" component={NavBar} />
+          </View>
+        </NativeRouter> */}
+      {/* </SafeAreaProvider> */}
+    </NavigationContainer>
+    </Provider>
   );
 };
 
@@ -32,6 +49,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+  },
+  image: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    zIndex: -2,
   },
   navbarContainer: {
     width: "100%",

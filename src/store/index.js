@@ -2,20 +2,20 @@ import { createStore } from 'redux'
 
 
 export const CREATE_TASK = 'CREATE_TASK';
-export const DELETE_TASK = 'DELETE_TASK';
+export const COMPLETE_TASK = 'COMPLETE_TASK';
 export const RESET_TASK_LIST = 'RESET_TASK_LIST';
 
 let tasks = {
-    "Daily": ["Walk Dog", "Feed Dog","Run Dishwasher", "Empty Dishwasher"],
-    "Weekly": ["Water Plants", "Take out Trash", "Take out Recycling", "Watch the Bachelor"],
-    "Monthly":  ["Pay Rent", "Pay Utilities",],
+    "Daily": [{"title": "Walk Dog", "completed": false, "category": "Daily"}, {"title":"Feed Dog", "completed": false, "category": "Daily"},{"title": "Run Dishwasher", "completed": false, "category": "Daily"}, {"title": "Empty Dishwasher", "completed": false, "category": "Daily"}],
+    "Weekly": [{"title":"Water Plants", "completed": false, "category": "Weekly"}, {"title":"Take out Trash", "completed": false, "category": "Weekly"}, {"title": "Take out Recycling", "completed": false, "category": "Weekly"}, {"title": "Watch the Bachelor", "completed": false, "category": "Weekly"}],
+    "Monthly":  [{"title": "Pay Rent", "completed": false, "category": "Monthly"}, {"title":"Pay Utilities", "completed": false, "category": "Monthly"},],
 }
 
-  let categories = [
-      "Daily",
-      "Weekly",
-      "Monthly"
-  ]
+let categories = [
+    "Daily",
+    "Weekly",
+    "Monthly"
+]
 
 
 export const tasksReducer = (state={tasks, categories}, action) => {
@@ -24,13 +24,18 @@ export const tasksReducer = (state={tasks, categories}, action) => {
             let taskType = action.payload.taskType
             let taskName = action.payload.taskName
             const newState = {...state}
-            newState.tasks[taskType].push(taskName)
+            newState.tasks[taskType].push({"title": taskName, "completed": false, "category": taskType})
             return newState
         }
-        case DELETE_TASK:
-            // const idx = action.taskId;
-            // const newState = Object.assign(state)
-            // newState.tasks
+        case COMPLETE_TASK:
+            const newState = {...state}
+
+            newState.tasks[action.payload.category].forEach(element => {
+                if (element.title === action.payload.title) {
+                    element.completed = !action.payload.completed;
+                }
+            });
+            return newState
         case RESET_TASK_LIST:
 
         default:
@@ -47,9 +52,9 @@ const store = createStore(tasksReducer);
 //     }
 // }
 
-export const deleteTask = (taskId) => {
+export const completeTask = (payload) => {
     return {
         type: DELETE_TASK,
-        taskId
+        payload
     }
 }

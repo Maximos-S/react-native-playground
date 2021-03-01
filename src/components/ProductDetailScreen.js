@@ -3,7 +3,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { useParams } from 'react-router-native'
 import {Icon} from 'react-native-elements'
 
-export default function ProductDetailScreen({product, setDetailRevealed}) {
+export default function ProductDetailScreen({task, setDetailRevealed}) {
     const rerouteBack = () => {
         setDetailRevealed(false)
     }
@@ -13,7 +13,7 @@ export default function ProductDetailScreen({product, setDetailRevealed}) {
                 <Pressable onPress={rerouteBack}>
                     <Icon name="arrow-left" type="font-awesome" color="#00aced" />
                 </Pressable>
-                <Text style={styles.title}>{product}</Text>
+                <Text style={styles.title}>{task.title}</Text>
                 <View>
                 </View>
             </View>
@@ -21,7 +21,7 @@ export default function ProductDetailScreen({product, setDetailRevealed}) {
                 <Image style={styles.image} source={require("../../assets/background-image.jpg")} />
             </View>
             <View style={styles.infoContainer}>
-                <Text style={styles.productTitle}>{product}</Text>
+                <Text style={styles.productTitle}>{task.completed? "completed" : "not completed" }</Text>
             </View>
         </View>
     )
