@@ -22,7 +22,7 @@ export default function NavBar ({}) {
           <Tab.Navigator
           initialRouteName="Home"
           tabBarOptions={{
-            activeTintColor: "#00eaFF"
+            activeTintColor: "black"
           }}
           >
             <Tab.Screen 

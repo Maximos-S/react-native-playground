@@ -1,40 +1,34 @@
 import React, {useState} from 'react';
-import { Alert,ImageBackground, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import { Image,Alert,ImageBackground, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
+import { image } from 'react-native-elements'
+
 export default function HomeScreen ({history}) {
       const [modalVisible, setModalVisible] = useState(false)
 
     return (
         <View style={styles.centeredView}>
           <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
-          <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-          >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
+          <View style={styles.imageContainer} >
+            <View style={styles.headerContainer} >
+              <Image 
+                source={require("../../assets/background-image.jpg")}
+                style={{width: 100, height: 100, borderRadius: "50%"}}
+              />
+              <Text>Hello, Demo </Text>
+            </View>
+            <View style={styles.profileContainer} >
+              <Image 
+                source={{uri: image}}
+                style={{width: 200, height: 200}}
+              />
+              <Text>Hello, Demo </Text>
             </View>
           </View>
-        </Modal>
-        <View style={styles.centeredView}>
-          <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}
-            >
-            <Text style={styles.textStyle}>Show Modal</Text>
-          </Pressable>
-        </View>
+          <View style={styles.taskContainer} >
+          <Text>Hello, Demo </Text>
+          </View>
+        {/* <View style={styles.centeredView}>
+        </View> */}
       </View>
     );
 
@@ -46,10 +40,31 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  navbarContainer: {
-    width: "100%",
-    // height: 500,
+  imageContainer: {
+    flex: 2,
     backgroundColor: "tomato",
+    width: "100%",
+    paddingTop: 20,
+  },
+  taskContainer: {
+    flex: 1,
+    backgroundColor: "dodgerblue",
+    width: "100%",
+    padding: 20,
+  },
+  headerContainer: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "dodgerblue",
+    width: "100%",
+    padding: 20,
+  },
+  profileContainer: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "gold",
+    width: "100%",
+    padding: 20,
   },
   centeredView: {
     flex: 1,
