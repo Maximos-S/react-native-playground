@@ -25,6 +25,7 @@ export const tasksReducer = (state={tasks, categories}, action) => {
             let taskName = action.payload.taskName
             const newState = {...state}
             newState.tasks[taskType].push({"title": taskName, "completed": false, "category": taskType})
+            console.log("newtask", newState.tasks[taskType])
             return newState
         }
         case COMPLETE_TASK:

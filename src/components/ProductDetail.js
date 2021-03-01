@@ -15,10 +15,8 @@ export default function ProductDetail({product,navigation}) {
         state.tasks[product.category].forEach(task => {
             if (task.title === product.title) {
                 taskRes = task
-                console.log("task res", taskRes)
             }
         })
-        console.log(taskRes)
         return taskRes
     })
     const completed = useSelector(state => {
@@ -26,7 +24,6 @@ export default function ProductDetail({product,navigation}) {
         state.tasks[product.category].forEach(task => {
             if (task.title === product.title) {
                 completedRes = task.completed
-                console.log("task res", completedRes)
             }
         })
         

@@ -7,9 +7,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ProductDetail from './ProductDetail';
 import ProductDetailScreen from './ProductDetailScreen';
 export default function TasksScreen ({navigation}) {
-  const DAILYDATA = useSelector(state => state.tasks.Daily)
+  const DAILYDATA = useSelector(state => {return state.tasks.Daily})
   const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
   const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
+  
+  const d = useSelector(state => state.tasks.Daily.length)
+  const w = useSelector(state => state.tasks.Weekly.length)
+  const m = useSelector(state => state.tasks.Monthly.length)
+  //quirks of working with a fake database ^
+
   
   const DATA = [
     {
