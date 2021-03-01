@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { Alert, ImageBackground,  SafeView, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import NavigationBar from 'react-native-navbar'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import dateFormat from 'dateformat'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 

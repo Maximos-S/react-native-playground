@@ -6,7 +6,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context'
 import {Provider, } from 'react-redux'
 import {createStore} from 'redux'
 import 'react-native-gesture-handler'
-import {NavigationContainer} from '@react-navigation/native'
+import {NavigationContainer, } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
@@ -18,29 +19,20 @@ import CreateTaskScreen from './src/components/CreateTaskScreen';
 import {tasksReducer} from './src/store/index'
 
 export default function App() {
-  const regex = /.+/;
+  // const regex = /.+/;
+  const Stack = createStackNavigator();
 
   const store = createStore(tasksReducer);
   return (
     <Provider store={store}>
-      {/* <SafeAreaProvider> */}
-
       <NavigationContainer>
         <NavBar />
-        {/* <NativeRouter> */}
-            {/* <Switch> */}
-              {/* <Route exact path="/" component={HomeScreen} /> */}
-              {/* <Route exact path="/products" component={TasksScreen} />
-              <Route exact path="/products/:productName" component={ProductDetailScreen} />
-              <Route exact path="/create" component={CreateTaskScreen} /> */}
-              {/* <Route exact path={/\/products\/.+/ } component={ProductDetailScreen} /> */}
-            {/* </Switch> */}
-          {/* <View >
-            <Route path="/" component={NavBar} />
-          </View>
-        </NativeRouter> */}
-      {/* </SafeAreaProvider> */}
-    </NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="TaskDetail" component={HomeScreen} />
+        </Stack.Navigator>
+
+      </NavigationContainer>
     </Provider>
   );
 };

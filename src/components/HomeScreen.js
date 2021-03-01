@@ -1,31 +1,53 @@
 import React, {useState} from 'react';
 import { Image,Alert,ImageBackground, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import { image } from 'react-native-elements'
+import { useSelector } from 'react-redux'
+import dateFormat from 'dateformat'
+import TaskTile from './TaskTile';
 
-export default function HomeScreen ({history}) {
+
+
+export default function HomeScreen ({navigation}) {
       const [modalVisible, setModalVisible] = useState(false)
 
+      let now = new Date();
+
+
+      const DAILYDATA = useSelector(state => {return state.tasks.Daily})
+      const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
+      const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
+
+      const mid = Math.floor(DAILYDATA.length /2)
+
+
+      let taskList = [...DAILYDATA.slice(0,mid),WEEKLYDATA[0],...DAILYDATA.slice(mid),MONTHLYDATA[0]]
+
     return (
+
         <View style={styles.centeredView}>
           <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
           <View style={styles.imageContainer} >
             <View style={styles.headerContainer} >
               <Image 
                 source={require("../../assets/background-image.jpg")}
-                style={{width: 100, height: 100, borderRadius: "50%"}}
+                style={{width: 100, height: 100, borderRadius: 50, marginRight: 20}}
               />
-              <Text>Hello, Demo </Text>
+              <View>
+                <Text style={styles.header}>Hello, Demo </Text>
+                <Text >{`${dateFormat(now, "dddd, mmmm dS")}`}</Text>
+              </View>
             </View>
             <View style={styles.profileContainer} >
-              <Image 
-                source={{uri: image}}
-                style={{width: 200, height: 200}}
-              />
-              <Text>Hello, Demo </Text>
+              <Text style={styles.header}>To Do:</Text>
+              <ScrollView horizontal={true}>
+                {taskList.map((task,idx) => (
+                  <TaskTile key={idx} task={task} navigation={navigation}/>
+                ))}
+              </ScrollView>
             </View>
           </View>
           <View style={styles.taskContainer} >
-          <Text>Hello, Demo </Text>
+          <Text style={styles.header}>Notifications</Text>
           </View>
         {/* <View style={styles.centeredView}>
         </View> */}
@@ -41,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    flex: 2,
+    flex: 3,
     backgroundColor: "tomato",
     width: "100%",
     paddingTop: 20,
@@ -52,6 +74,10 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 20,
   },
+  header: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
   headerContainer: {
     flex: 1,
     flexDirection: "row",
@@ -60,8 +86,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   profileContainer: {
-    flex: 1,
-    flexDirection: "row",
+    flex: 2,
     backgroundColor: "gold",
     width: "100%",
     padding: 20,
