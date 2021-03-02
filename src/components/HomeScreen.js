@@ -28,7 +28,7 @@ export default function HomeScreen ({navigation}) {
             <View style={styles.headerContainer} >
               <Image 
                 source={require("../../assets/demouser.png")}
-                style={{width: 100, height: 100, borderRadius: 50, marginRight: 20}}
+                style={{width: 100, height: 100, borderRadius: 50, marginRight: 20, borderColor: "dodgerblue", borderWidth: 3,}}
               />
               <View>
                 <Text style={styles.header}>Hello, Demo </Text>

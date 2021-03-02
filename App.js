@@ -8,6 +8,7 @@ import {createStore} from 'redux'
 import 'react-native-gesture-handler'
 import {NavigationContainer, } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
+import dateFormat from 'dateformat'
 
 
 
@@ -19,15 +20,16 @@ import CreateTaskScreen from './src/components/CreateTaskScreen';
 import {tasksReducer} from './src/store/index'
 
 export default function App() {
-  // const regex = /.+/;
-  const Stack = createStackNavigator();
+  let now = new Date();
 
+  const Stack = createStackNavigator();
+  let name = `${dateFormat(now, "dddd, mmmm dS")}`
   const store = createStore(tasksReducer);
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={NavBar} />
+          <Stack.Screen name={name} component={NavBar} />
           {/* <Stack.Screen name="Home2" component={HomeScreen} /> */}
           <Stack.Screen name="TaskDetail" component={ProductDetailScreen} />
         </Stack.Navigator>

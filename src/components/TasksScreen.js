@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 import ProductDetail from './ProductDetail';
-import ProductDetailScreen from './ProductDetailScreen';
+import TaskTile from './TaskTile';
 export default function TasksScreen ({navigation}) {
   const DAILYDATA = useSelector(state => {return state.tasks.Daily})
   const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
@@ -17,39 +17,27 @@ export default function TasksScreen ({navigation}) {
   //quirks of working with a fake database ^
 
   
-  const DATA = [
-    {
-      title: "Daily",
-      data: DAILYDATA
-    },
-    {
-      title: "Weekly",
-      data: WEEKLYDATA
-    },
-    {
-      title: "Monthly",
-      data: MONTHLYDATA
-    },
-  ];
-
-  
   const Item = ({ product,}) => (
     <ProductDetail style={styles.item} product={product} style={styles.title} navigation={navigation}/>
   );
     return (
       <View style={styles.container}>
           <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
-        <SectionList
-          style={styles.SectionList}
-          sections={DATA}
-          keyExtractor={(item, idx) => {
-          return item + idx}}
-          renderItem={({item}) => {
-            return <Item product={item}/>}}
-          renderSectionHeader={({section: {title}}) => (
-            <Text style={styles.title}>{title}</Text>
-          )}
-        />
+        <ScrollView horizontal={true}>
+                {DAILYDATA.map((task,idx) => (
+                  <TaskTile key={idx} task={task} navigation={navigation}/>
+                ))}
+        </ScrollView>
+        <ScrollView horizontal={true}>
+                {WEEKLYDATA.map((task,idx) => (
+                  <TaskTile key={idx} task={task} navigation={navigation}/>
+                ))}
+        </ScrollView>
+        <ScrollView horizontal={true}>
+                {MONTHLYDATA.map((task,idx) => (
+                  <TaskTile key={idx} task={task} navigation={navigation}/>
+                ))}
+        </ScrollView>
       </View>
     );
 
