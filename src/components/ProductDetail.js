@@ -8,7 +8,6 @@ import {COMPLETE_TASK} from '../store/index'
 
 
 export default function ProductDetail({product,navigation}) {
-    const [detailRevealed, setDetailRevealed] = useState(false)
     // const [completed, setCompleted] = useState(false)
     const task = useSelector(state => {
         let taskRes;
@@ -30,16 +29,10 @@ export default function ProductDetail({product,navigation}) {
         return completedRes
     })
 
-
-    // useEffect(()=> {
-    //     console.log("switch")
-    //     setCompleted(task.completed)
-    // },[task])
-
     const dispatch = useDispatch()
 
     const productReroute = () => {
-        setDetailRevealed(!detailRevealed)
+        navigation.navigate("TaskDetail", {task})
     }
     const Stack = createStackNavigator()
 
@@ -53,7 +46,6 @@ export default function ProductDetail({product,navigation}) {
     return (
 
         <View style={completed ? styles.completed : styles.item}>
-            {detailRevealed && <ProductDetailScreen setDetailRevealed={setDetailRevealed} task={task}/>}
              <TouchableOpacity
                     style={styles.button}
                     onPress={productReroute}

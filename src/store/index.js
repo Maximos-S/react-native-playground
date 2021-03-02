@@ -23,9 +23,9 @@ export const tasksReducer = (state={tasks, categories}, action) => {
         case CREATE_TASK: {
             let taskType = action.payload.taskType
             let taskName = action.payload.taskName
+            let taskDetails = action.payload.taskDetails
             const newState = {...state}
-            newState.tasks[taskType].push({"title": taskName, "completed": false, "category": taskType})
-            console.log("newtask", newState.tasks[taskType])
+            newState.tasks[taskType].push({"title": taskName, "completed": false, "category": taskType, "details": taskDetails})
             return newState
         }
         case COMPLETE_TASK:
@@ -46,12 +46,6 @@ export const tasksReducer = (state={tasks, categories}, action) => {
 
 const store = createStore(tasksReducer);
 
-// export const createTask= (taskType) => {
-//     return {
-//         type: CREATE_TASK,
-//         taskType
-//     }
-// }
 
 export const completeTask = (payload) => {
     return {

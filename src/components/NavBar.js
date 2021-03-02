@@ -10,12 +10,11 @@ import TasksScreen from './TasksScreen'
 import CreateTaskScreen from './CreateTaskScreen'
 
 
-export default function NavBar ({}) {
+export default function NavBar ({navigation}) {
   let now = new Date();
 
     const Tab = createBottomTabNavigator()
 
-    
     return (
         <View style={styles.navbarContainer}>
           <Tab.Navigator
@@ -30,7 +29,7 @@ export default function NavBar ({}) {
               options={{
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={size} />
+                    <MaterialCommunityIcons name="home" color={color} size={size}/>
               ),}}
             />
             <Tab.Screen name="Create Task" 

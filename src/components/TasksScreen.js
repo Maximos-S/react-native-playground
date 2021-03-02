@@ -33,7 +33,7 @@ export default function TasksScreen ({navigation}) {
   ];
 
   
-  const Item = ({ product, navigation }) => (
+  const Item = ({ product,}) => (
     <ProductDetail style={styles.item} product={product} style={styles.title} navigation={navigation}/>
   );
     return (
@@ -45,7 +45,7 @@ export default function TasksScreen ({navigation}) {
           keyExtractor={(item, idx) => {
           return item + idx}}
           renderItem={({item}) => {
-            return <Item product={item} navigation={navigation}/>}}
+            return <Item product={item}/>}}
           renderSectionHeader={({section: {title}}) => (
             <Text style={styles.title}>{title}</Text>
           )}

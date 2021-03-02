@@ -7,7 +7,6 @@ import {COMPLETE_TASK} from '../store/index'
 
 export default function TaskTile({task, navigation}) {
 
-    console.log("navigation", navigation)
     const completed = useSelector(state => {
         let completedRes;
         state.tasks[task.category].forEach(task1 => {
@@ -22,7 +21,7 @@ export default function TaskTile({task, navigation}) {
     const dispatch = useDispatch()
 
     const handlePress = e => {
-        console.log("hello")
+        navigation.navigate("TaskDetail", {task: task})
     }
 
     const taskComplete = e => {

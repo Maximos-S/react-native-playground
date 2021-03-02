@@ -26,10 +26,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <NavBar />
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="TaskDetail" component={HomeScreen} />
+          <Stack.Screen name="Home" component={NavBar} />
+          {/* <Stack.Screen name="Home2" component={HomeScreen} /> */}
+          <Stack.Screen name="TaskDetail" component={ProductDetailScreen} />
         </Stack.Navigator>
 
       </NavigationContainer>

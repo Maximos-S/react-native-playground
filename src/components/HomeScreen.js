@@ -8,19 +8,17 @@ import TaskTile from './TaskTile';
 
 
 export default function HomeScreen ({navigation}) {
-      const [modalVisible, setModalVisible] = useState(false)
-
-      let now = new Date();
+    let now = new Date();
 
 
-      const DAILYDATA = useSelector(state => {return state.tasks.Daily})
-      const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
-      const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
+    const DAILYDATA = useSelector(state => {return state.tasks.Daily})
+    const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
+    const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
 
-      const mid = Math.floor(DAILYDATA.length /2)
+    const mid = Math.floor(DAILYDATA.length /2)
 
 
-      let taskList = [...DAILYDATA.slice(0,mid),WEEKLYDATA[0],...DAILYDATA.slice(mid),MONTHLYDATA[0]]
+    let taskList = [...DAILYDATA.slice(0,mid),WEEKLYDATA[0],...DAILYDATA.slice(mid),MONTHLYDATA[0]]
 
     return (
 
@@ -29,7 +27,7 @@ export default function HomeScreen ({navigation}) {
           <View style={styles.imageContainer} >
             <View style={styles.headerContainer} >
               <Image 
-                source={require("../../assets/background-image.jpg")}
+                source={require("../../assets/demouser.png")}
                 style={{width: 100, height: 100, borderRadius: 50, marginRight: 20}}
               />
               <View>
@@ -63,14 +61,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    flex: 3,
-    backgroundColor: "tomato",
+    flex: 2,
+    // backgroundColor: "tomato",
     width: "100%",
-    paddingTop: 20,
   },
   taskContainer: {
     flex: 1,
-    backgroundColor: "dodgerblue",
+    // backgroundColor: "dodgerblue",
     width: "100%",
     padding: 20,
   },
@@ -81,7 +78,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "dodgerblue",
+    // backgroundColor: "dodgerblue",
     width: "100%",
     padding: 20,
   },

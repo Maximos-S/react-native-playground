@@ -7,13 +7,14 @@ import {CREATE_TASK} from '../store/index'
 export default function CreateTaskScreen({navigation}) {
     const [taskName, setTaskName] = useState("")
     const [taskType, setTaskType] = useState("")
+    const [taskDetails, setTaskDetails] = useState("")
 
     const dispatch = useDispatch()
 
     const handleSubmit = () => {
         dispatch({
             type: CREATE_TASK,
-            payload: {taskName, taskType}
+            payload: {taskName, taskType, taskDetails}
         })
         navigation.navigate("Tasks")
     }
@@ -36,6 +37,13 @@ export default function CreateTaskScreen({navigation}) {
                             {label: "Monthly", value: "Monthly"},
                         ]}
                         />
+                      <TextInput
+                          style={styles.textArea}
+                          placeholder="details"
+                          multiline={true}
+                          numberOfLines={4}
+                          onChangeText={(text) => setTaskDetails(text)}
+                          value={taskDetails}/>
                     <Button title="submit" onPress={handleSubmit}/>
                  </View>
              {/* </View> */}
@@ -58,6 +66,15 @@ const styles = StyleSheet.create({
     padding: 50,
   },
   input: {
+    backgroundColor: "dodgerblue",
+    margin: 20,
+    fontSize: 30,
+    borderRadius: 5,
+    padding: 10,
+    color: "white",
+  },
+  textArea: {
+    height: 150,
     backgroundColor: "dodgerblue",
     margin: 20,
     fontSize: 30,
