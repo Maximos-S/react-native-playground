@@ -33,7 +33,7 @@ export default function TasksScreen ({navigation}) {
                   <TaskTile key={idx} task={task} navigation={navigation}/>
                 ))}
         </ScrollView>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} style={styles.scrollBox}>
                 {MONTHLYDATA.map((task,idx) => (
                   <TaskTile key={idx} task={task} navigation={navigation}/>
                 ))}
@@ -47,6 +47,9 @@ export default function TasksScreen ({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  scrollBox: {
+    minWidth: "100%"
+  },
   container: {
     flex: 1,
     alignItems: 'center',

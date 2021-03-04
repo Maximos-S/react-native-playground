@@ -36,7 +36,9 @@ export default function HomeScreen ({navigation}) {
               </View>
             </View>
             <View style={styles.profileContainer} >
-              <Text style={styles.header}>To Do:</Text>
+              <View style={styles.titleContainer}>
+                <Text style={styles.header}>To Do</Text>
+              </View>
               <ScrollView horizontal={true}>
                 {taskList.map((task,idx) => (
                   <TaskTile key={idx} task={task} navigation={navigation}/>
@@ -45,7 +47,9 @@ export default function HomeScreen ({navigation}) {
             </View>
           </View>
           <View style={styles.taskContainer} >
-          <Text style={styles.header}>Notifications</Text>
+          <View style={styles.titleContainer}>
+                <Text style={styles.header}>Notifications</Text>
+              </View>
           </View>
         {/* <View style={styles.centeredView}>
         </View> */}
@@ -66,25 +70,33 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   taskContainer: {
-    flex: 1,
+    flex: .5,
     // backgroundColor: "dodgerblue",
     width: "100%",
     padding: 20,
+  },
+  titleContainer: {
+    backgroundColor: "gold",
+    padding: 5,
+    paddingLeft: 15,
+    borderRadius: 20,
+    width: "auto",
   },
   header: {
     fontSize: 30,
     fontWeight: 'bold',
+
   },
   headerContainer: {
     flex: 1,
     flexDirection: "row",
-    // backgroundColor: "dodgerblue",
+    backgroundColor: "dodgerblue",
     width: "100%",
     padding: 20,
   },
   profileContainer: {
-    flex: 2,
-    backgroundColor: "gold",
+    flex: 3,
+    // backgroundColor: "gold",
     width: "100%",
     padding: 20,
   },
