@@ -21,7 +21,6 @@ export default function HomeScreen ({navigation}) {
     let taskList = [...DAILYDATA.slice(0,mid),WEEKLYDATA[0],...DAILYDATA.slice(mid),MONTHLYDATA[0]]
 
     return (
-
         <View style={styles.centeredView}>
           <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
           <View style={styles.imageContainer} >
@@ -41,7 +40,7 @@ export default function HomeScreen ({navigation}) {
               </View>
               <ScrollView horizontal={true}>
                 {taskList.map((task,idx) => (
-                  <TaskTile key={idx} task={task} navigation={navigation}/>
+                  <TaskTile key={idx} task={task} navigation={navigation} homeScreen={true}/>
                 ))}
               </ScrollView>
             </View>
@@ -62,15 +61,15 @@ export default function HomeScreen ({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   imageContainer: {
-    flex: 2,
+    flex: 1,
     // backgroundColor: "tomato",
     width: "100%",
   },
   taskContainer: {
-    flex: .5,
+    flex: .25,
     // backgroundColor: "dodgerblue",
     width: "100%",
     padding: 20,
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   profileContainer: {
-    flex: 3,
+    flex: 2,
     // backgroundColor: "gold",
     width: "100%",
     padding: 20,

@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {COMPLETE_TASK} from '../store/index'
 
 
-export default function TaskTile({task, navigation}) {
+export default function TaskTile({task, navigation, homeScreen}) {
     console.log(navigation)
     const completed = useSelector(state => {
         let completedRes;
@@ -45,25 +45,30 @@ export default function TaskTile({task, navigation}) {
 
 
     return (
-        <View style={completed? styles.completed : styles.visible}>
-            <Pressable  
-                onPress={handlePress} 
-                style={styles[tileStyle]}>
-                <View style={styles.tileTitle}>
-                    <Text style={tileStyle === "monthlyStyle" ? styles.monthlyText : styles.categoryText}>{task.category}</Text>
-                    <Text style={styles.titleText}>{task.title}</Text>
+        <>
+            {completed && homeScreen ?
+                <></>
+                :
+                <View style={completed? styles.completed : styles.visible}>
+                    <Pressable  
+                        onPress={handlePress} 
+                        style={styles[tileStyle]}>
+                        <View style={styles.tileTitle}>
+                            <Text style={tileStyle === "monthlyStyle" ? styles.monthlyText : styles.categoryText}>{task.category}</Text>
+                            <Text numberOfLines={2} style={styles.titleText}>{task.title}</Text>
+                        </View>
+                        <View style={styles.tileButton}>
+                            <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={taskComplete}
+                            >
+                                    <Text>{task.completed? "mark not completed" : "mark completed" }</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Pressable>
                 </View>
-                <View style={styles.tileButton}>
-                    <TouchableOpacity
-                            style={styles.button}
-                            onPress={taskComplete}
-                    >
-                            <Text>{task.completed? "mark not completed" : "mark completed" }</Text>
-                    </TouchableOpacity>
-                </View>
-            </Pressable>
-        </View>
-        
+            }
+        </>
     )
 }
 
@@ -110,7 +115,6 @@ const styles = StyleSheet.create({
     titleText: {
         fontWeight: "bold",
         fontSize: 25,
-        
     },
     button: {
         height: "100%",

@@ -1,19 +1,50 @@
 import React, {useState} from 'react';
 import { Alert, ImageBackground,  SafeView, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
 import NavigationBar from 'react-native-navbar'
+import {useDispatch} from 'react-redux'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+// import schedule from 'node-schedule'
 
 import HomeScreen from './HomeScreen'
 import TasksScreen from './TasksScreen'
 import CreateTaskScreen from './CreateTaskScreen'
+import {resetDaily, resetWeekly, resetMonthly} from '../store/index'
 
 
 export default function NavBar ({navigation}) {
   let now = new Date();
 
-    const Tab = createBottomTabNavigator()
+   const dispatch = useDispatch()
+
+    let clear = setInterval(() => {
+      
+
+      if (now.getHours() === 0) {
+        dispatch(resetDaily())
+        if (now.getDay() === 0) {
+          dispatch(resetWeekly())
+        }
+        if (now.getDate() === 1) {
+          dispatch(resetMonthly())
+        } 
+      }
+    }, 20000)
+    // clearInterval(clear) 
+
+  // const dailyRule = new schedule.RecurrenceRule()
+  // dailyRule.hour = 12;
+  // dailyRule.minute = 50;
+  // dailyRule.tz = "EST"
+
+  // const dispatch = useDispatch()
+
+  // const dailyReset = schedule.scheduleJob(dailyRule, () => {
+  //   console.log("work work work")
+  //   dispatch(resetDaily())
+  // })
+
+  const Tab = createBottomTabNavigator()
 
     return (
         <View style={styles.navbarContainer}>

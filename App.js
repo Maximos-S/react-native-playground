@@ -3,30 +3,29 @@ import React, {useState} from 'react';
 import { ImageBackground, Alert, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable, SafeAreaView } from 'react-native';
 import { NativeRouter, Switch, Route} from 'react-router-native'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
-import {Provider, } from 'react-redux'
+import {Provider, useDispatch} from 'react-redux'
 import {createStore} from 'redux'
 import 'react-native-gesture-handler'
 import {NavigationContainer, } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import dateFormat from 'dateformat'
 
-
-
 import HomeScreen from './src/components/HomeScreen'
 import NavBar from './src/components/NavBar';
 import ProductDetailScreen from './src/components/ProductDetailScreen';
 import TasksScreen from './src/components/TasksScreen';
 import CreateTaskScreen from './src/components/CreateTaskScreen';
-import {tasksReducer} from './src/store/index'
+import {tasksReducer, resetDaily, resetWeekly, resetMonthly} from './src/store/index'
 
 export default function App() {
   let now = new Date();
-
+ 
   const Stack = createStackNavigator();
   let name = `${dateFormat(now, "dddd, mmmm dS")}`
   const store = createStore(tasksReducer);
   return (
     <Provider store={store}>
+      {}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name={name} component={NavBar} />
