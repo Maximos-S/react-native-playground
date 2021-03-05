@@ -32,18 +32,6 @@ export default function NavBar ({navigation}) {
     }, 20000)
     // clearInterval(clear) 
 
-  // const dailyRule = new schedule.RecurrenceRule()
-  // dailyRule.hour = 12;
-  // dailyRule.minute = 50;
-  // dailyRule.tz = "EST"
-
-  // const dispatch = useDispatch()
-
-  // const dailyReset = schedule.scheduleJob(dailyRule, () => {
-  //   console.log("work work work")
-  //   dispatch(resetDaily())
-  // })
-
   const Tab = createBottomTabNavigator()
 
     return (

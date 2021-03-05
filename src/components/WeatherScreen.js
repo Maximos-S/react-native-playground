@@ -1,30 +1,11 @@
-import React, {useState} from 'react';
-import { Image,Alert,ImageBackground, ScrollView, StyleSheet, Text, View, Button, Modal, Pressable } from 'react-native';
-import { image } from 'react-native-elements'
-import { useSelector } from 'react-redux'
+import React from 'react'
+import { StyleSheet, ImageBackground, Image, Text, View } from 'react-native'
 import dateFormat from 'dateformat'
-import TaskTile from './TaskTile';
 
 
-
-export default function HomeScreen ({navigation}) {
-    let now = new Date();
-
-
-    const DAILYDATA = useSelector(state => {return state.tasks.Daily})
-    const WEEKLYDATA = useSelector(state => state.tasks.Weekly)
-    const MONTHLYDATA = useSelector(state => state.tasks.Monthly)
-
-    const mid = Math.floor(DAILYDATA.length /2)
-
-    const handleWeatherPress = () => {
-      navigation.navigate("Weather")
-    }
-
-    let taskList = [...DAILYDATA.slice(0,mid),WEEKLYDATA[0],...DAILYDATA.slice(mid),MONTHLYDATA[0]]
-
+export default function WeatherScreen() {
     return (
-        <View style={styles.centeredView}>
+       <View style={styles.centeredView}>
           <ImageBackground style={styles.image} source={require("../../assets/background-image.jpg")} />
           <View style={styles.imageContainer} >
             <View style={styles.headerContainer} >
@@ -41,26 +22,8 @@ export default function HomeScreen ({navigation}) {
               <View style={styles.titleContainer}>
                 <Text style={styles.header}>To Do</Text>
               </View>
-              <ScrollView horizontal={true}>
-                {taskList.map((task,idx) => (
-                  <TaskTile key={idx} task={task} navigation={navigation} homeScreen={true}/>
-                ))}
-              </ScrollView>
             </View>
           </View>
-          <View style={styles.taskContainer} >
-            <View style={styles.titleContainer}>
-                <Text style={styles.header}>Messages --></Text>
-            </View>
-            <View style={styles.titleContainer}>
-                <Text style={styles.header}>Roomates --></Text>
-            </View>
-            <Pressable style={styles.titleContainer} onPress={handleWeatherPress}>
-                <Text style={styles.header}>Weather --></Text>
-            </Pressable>
-          </View>
-        {/* <View style={styles.centeredView}>
-        </View> */}
       </View>
     );
 

@@ -16,6 +16,7 @@ import ProductDetailScreen from './src/components/ProductDetailScreen';
 import TasksScreen from './src/components/TasksScreen';
 import CreateTaskScreen from './src/components/CreateTaskScreen';
 import {tasksReducer, resetDaily, resetWeekly, resetMonthly} from './src/store/index'
+import WeatherScreen from './src/components/WeatherScreen';
 
 export default function App() {
   let now = new Date();
@@ -31,6 +32,7 @@ export default function App() {
           <Stack.Screen name={name} component={NavBar} />
           {/* <Stack.Screen name="Home2" component={HomeScreen} /> */}
           <Stack.Screen name="TaskDetail" component={ProductDetailScreen} />
+          <Stack.Screen name="Weather" component={WeatherScreen} />
         </Stack.Navigator>
 
       </NavigationContainer>
